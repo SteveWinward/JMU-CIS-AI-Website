@@ -1,0 +1,26 @@
+@model IEnumerable<NonProfitSite.Models.Feedback>
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+<h1>Dashboard</h1>
+<p>Total feedback: @ViewBag.TotalFeedback</p>
+<p>Pending feedback: @ViewBag.PendingFeedback</p>
+
+<h2>Recent Feedback</h2>
+<table class="table table-sm">
+    <thead><tr><th>Submitted</th><th>Name</th><th>Email</th><th>Message</th><th>Actions</th></tr></thead>
+    <tbody>
+        @foreach (var f in Model)
+        {
+            <tr>
+                <td>@f.SubmittedAt.ToLocalTime().ToString("g")</td>
+                <td>@f.Name</td>
+                <td>@f.Email</td>
+                <td>@(f.Message.Length > 100 ? f.Message.Substring(0, 100) + "..." : f.Message)</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" href="/Admin/ViewFeedback/@f.Id">View</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

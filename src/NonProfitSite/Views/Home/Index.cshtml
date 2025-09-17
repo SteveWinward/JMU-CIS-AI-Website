@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Home";
+}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Our Mission</h1>
+        <p>We are a non-profit organization dedicated to serving our community.</p>
+
+        <h2>Featured News</h2>
+        @if (ViewBag.News is IEnumerable<NonProfitSite.Models.NewsItem> news)
+        {
+            foreach (var n in news)
+            {
+                <article class="mb-3">
+                    <h3>@n.Title</h3>
+                    <p class="text-muted">@n.PublishedAt.ToLocalTime().ToString("yyyy-MM-dd")</p>
+                    <p>@n.Summary</p>
+                </article>
+            }
+        }
+
+        <h2>Upcoming Events</h2>
+        @if (ViewBag.Events is IEnumerable<NonProfitSite.Models.Event> ev)
+        {
+            foreach (var e in ev)
+            {
+                <div class="mb-3">
+                    <strong>@e.Title</strong> <span class="text-muted">@e.Start?.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</span>
+                    <p>@e.Description</p>
+                </div>
+            }
+        }
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Call to Action</h5>
+                <p>Support our mission by volunteering or donating.</p>
+                <a class="btn btn-primary" href="/Home/Contact">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</div>

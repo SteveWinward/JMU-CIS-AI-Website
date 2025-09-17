@@ -1,0 +1,20 @@
+@model NonProfitSite.Models.Feedback
+@{
+    ViewData["Title"] = "Feedback Details";
+}
+<h1>Feedback Details</h1>
+<div class="mb-3">
+    <strong>From:</strong> @Model.Name &lt;@Model.Email&gt;<br />
+    <strong>Submitted:</strong> @Model.SubmittedAt.ToLocalTime().ToString("g")
+</div>
+<div class="mb-3">
+    <p>@Model.Message</p>
+</div>
+<div class="mb-3">
+    <a class="btn btn-success" href="/Admin/ReplyFeedback/@Model.Id">Reply</a>
+    <form method="post" action="/Admin/ArchiveFeedback/@Model.Id" style="display:inline-block;">
+        <button class="btn btn-warning" type="submit">Archive</button>
+    </form>
+</div>
+@if (TempData["Message"] != null) { <div class="alert alert-success">@TempData["Message"]</div> }
+@if (TempData["Error"] != null) { <div class="alert alert-danger">@TempData["Error"]</div> }

@@ -1,0 +1,27 @@
+@model NonProfitSite.Models.FeedbackViewModel
+@{
+    ViewData["Title"] = "Contact";
+}
+<h1>Contact</h1>
+<p>Reach out to us via the form below.</p>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<form asp-action="SubmitFeedback" method="post">
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name (optional)</label>
+        <input class="form-control" id="Name" name="Name" />
+    </div>
+    <div class="mb-3">
+        <label for="Email" class="form-label">Email (optional)</label>
+        <input class="form-control" id="Email" name="Email" type="email" />
+    </div>
+    <div class="mb-3">
+        <label for="Message" class="form-label">Message</label>
+        <textarea class="form-control" id="Message" name="Message" rows="5" required></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>

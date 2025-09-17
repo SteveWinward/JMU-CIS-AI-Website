@@ -1,0 +1,18 @@
+@model IEnumerable<NonProfitSite.Models.NewsItem>
+@{
+    ViewData["Title"] = "News";
+}
+<h1>News</h1>
+<table class="table">
+    <thead><tr><th>Published</th><th>Title</th><th>Summary</th></tr></thead>
+    <tbody>
+        @foreach (var n in Model)
+        {
+            <tr>
+                <td>@n.PublishedAt.ToLocalTime().ToString("g")</td>
+                <td>@n.Title</td>
+                <td>@n.Summary</td>
+            </tr>
+        }
+    </tbody>
+</table>

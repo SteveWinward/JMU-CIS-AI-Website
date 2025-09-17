@@ -1,0 +1,22 @@
+@model IEnumerable<NonProfitSite.Models.Event>
+@{
+    ViewData["Title"] = "Events";
+}
+<h1>Events</h1>
+@if (!Model.Any())
+{
+    <p>No events scheduled.</p>
+}
+else
+{
+    <ul class="list-group">
+        @foreach (var e in Model)
+        {
+            <li class="list-group-item">
+                <strong>@e.Title</strong>
+                <div class="text-muted">@e.Start?.ToLocalTime().ToString("yyyy-MM-dd HH:mm") @if (!string.IsNullOrEmpty(e.Location)) { <span>- @e.Location</span> }</div>
+                <p>@e.Description</p>
+            </li>
+        }
+    </ul>
+}

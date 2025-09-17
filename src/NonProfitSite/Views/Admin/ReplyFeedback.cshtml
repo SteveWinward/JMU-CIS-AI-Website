@@ -1,0 +1,19 @@
+@model NonProfitSite.Models.Feedback
+@{
+    ViewData["Title"] = "Reply to Feedback";
+}
+<h1>Reply</h1>
+<div class="mb-3">
+    <strong>To:</strong> @Model.Name &lt;@Model.Email&gt;
+</div>
+<form method="post" action="/Admin/ReplyFeedback/@Model.Id">
+    <div class="mb-3">
+        <label class="form-label">Subject</label>
+        <input class="form-control" name="subject" required />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Message</label>
+        <textarea class="form-control" name="body" rows="8" required></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Send Reply</button>
+</form>
