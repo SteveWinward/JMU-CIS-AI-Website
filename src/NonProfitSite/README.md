@@ -4,7 +4,7 @@ This is a minimal ASP.NET Core MVC application implementing the requirements fro
 
 ## Prerequisites
 
-- .NET 8 SDK (install instructions: https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+- .NET 8 SDK (install instructions: [download .NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0))
 - (Optional) GitHub Codespaces account for remote testing
 
 ## Run locally (development)
@@ -18,6 +18,7 @@ This is a minimal ASP.NET Core MVC application implementing the requirements fro
 3. The app listens on http://0.0.0.0:5000. Open http://localhost:5000 in your browser.
 
 Notes:
+
 - On first run the SQLite database `app.db` will be created in the application folder and seeded with a default admin user.
 - Default admin credentials: email `admin@example.org` password `Admin!123`
 
@@ -26,6 +27,7 @@ Notes:
 When running inside a Codespace, ensure the application listens on all network interfaces (the project is configured to do that by setting `app.Urls.Add("http://0.0.0.0:5000")`).
 
 Steps:
+
 1. Open the Codespace for this repository and open a terminal in `src/NonProfitSite`.
 2. Run `dotnet run`.
 3. In the Codespaces UI, forward port `5000` (or use the Automatic Port Detection). Expose it as public if you want to view from outside.
