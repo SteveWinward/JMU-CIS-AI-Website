@@ -10,7 +10,7 @@
     <div class="alert alert-success">@TempData["Message"]</div>
 }
 
-<form asp-action="SubmitFeedback" method="post">
+<form asp-action="SubmitFeedback" method="post" class="needs-validation" novalidate>
     <div class="mb-3">
         <label for="Name" class="form-label">Name (optional)</label>
         <input class="form-control" id="Name" name="Name" />
@@ -19,9 +19,10 @@
         <label for="Email" class="form-label">Email (optional)</label>
         <input class="form-control" id="Email" name="Email" type="email" />
     </div>
-    <div class="mb-3">
-        <label for="Message" class="form-label">Message</label>
-        <textarea class="form-control" id="Message" name="Message" rows="5" required></textarea>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" id="Message" name="Message" rows="6" required></textarea>
+        <label for="Message">Message</label>
+        <div class="invalid-feedback">Please enter a message.</div>
     </div>
     <button class="btn btn-primary" type="submit">Submit</button>
 </form>

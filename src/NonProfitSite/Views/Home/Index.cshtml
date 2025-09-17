@@ -1,43 +1,108 @@
 @{
     ViewData["Title"] = "Home";
 }
-<div class="row">
-    <div class="col-md-8">
-        <h1>Our Mission</h1>
-        <p>We are a non-profit organization dedicated to serving our community.</p>
-
-        <h2>Featured News</h2>
-        @if (ViewBag.News is IEnumerable<NonProfitSite.Models.NewsItem> news)
-        {
-            foreach (var n in news)
-            {
-                <article class="mb-3">
-                    <h3>@n.Title</h3>
-                    <p class="text-muted">@n.PublishedAt.ToLocalTime().ToString("yyyy-MM-dd")</p>
-                    <p>@n.Summary</p>
-                </article>
-            }
-        }
-
-        <h2>Upcoming Events</h2>
-        @if (ViewBag.Events is IEnumerable<NonProfitSite.Models.Event> ev)
-        {
-            foreach (var e in ev)
-            {
-                <div class="mb-3">
-                    <strong>@e.Title</strong> <span class="text-muted">@e.Start?.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</span>
-                    <p>@e.Description</p>
-                </div>
-            }
-        }
+<section class="hero" role="region" aria-labelledby="hero-title">
+    <div class="hero-inner">
+        <div class="hero-copy">
+            <h1 id="hero-title">Serving the community. Inspiring change.</h1>
+            <p>We connect neighbors, create opportunities, and build lasting impact. Join our mission to make a tangible difference.</p>
+            <p class="mt-3">
+                <a class="btn cta me-2" href="/Home/Contact">Get Involved</a>
+                <a class="btn btn-outline-light me-2" href="/Home/Events">See Events</a>
+                <a class="btn btn-link" href="/Admin/Login" style="color:var(--np-gold); font-weight:700; text-decoration:underline;" aria-label="Admin login">Staff / Admin</a>
+            </p>
+        </div>
+        <div class="hero-media" aria-hidden="true">
+            <img src="/images/community.svg" alt="Community illustration" style="max-width:420px; width:100%; border-radius:12px; box-shadow:0 12px 48px rgba(0,0,0,0.15);" />
+        </div>
     </div>
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Call to Action</h5>
-                <p>Support our mission by volunteering or donating.</p>
-                <a class="btn btn-primary" href="/Home/Contact">Contact Us</a>
+</section>
+
+<section class="feature-cards" aria-labelledby="features-title">
+    <h2 id="features-title" class="visually-hidden">Key Focus Areas</h2>
+
+    <div class="card feature">
+        <img src="/images/mission.svg" alt="Mission illustration" />
+        <div class="card-body">
+            <h5 class="card-title">Our Mission</h5>
+            <p class="card-text">We advance community well-being through programs that focus on education, health, and empowerment.</p>
+        </div>
+    </div>
+
+    <div class="card feature">
+        <img src="/images/volunteer.svg" alt="Volunteer illustration" />
+        <div class="card-body">
+            <h5 class="card-title">Volunteer</h5>
+            <p class="card-text">Join events to support neighbors — mentor, teach, and connect. Everyone has something to give.</p>
+        </div>
+    </div>
+
+    <div class="card feature">
+        <img src="/images/donate.svg" alt="Donate illustration" />
+        <div class="card-body">
+            <h5 class="card-title">Donate</h5>
+            <p class="card-text">Your support funds programs that change lives. Small donations compound into big outcomes.</p>
+        </div>
+    </div>
+
+    <div class="card feature">
+        <img src="/images/community.svg" alt="Partnership illustration" />
+        <div class="card-body">
+            <h5 class="card-title">Partners</h5>
+            <p class="card-text">We work with local leaders and organizations to scale impact and share best practices.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="row">
+        <div class="col-md-7">
+            <h3>Latest News</h3>
+            <div class="news-list">
+                @if (ViewBag.News is IEnumerable<NonProfitSite.Models.NewsItem> news)
+                {
+                    foreach (var n in news)
+                    {
+                        <article class="news-item" aria-labelledby="news-@n.Id">
+                            <h4 id="news-@n.Id">@n.Title</h4>
+                            <p class="text-muted">@n.PublishedAt.ToLocalTime().ToString("yyyy-MM-dd")</p>
+                            <p>@n.Summary</p>
+                        </article>
+                    }
+                }
+                else
+                {
+                    <p>No news items yet.</p>
+                }
+            </div>
+        </div>
+        <div class="col-md-5">
+            <h3>Upcoming Events</h3>
+            <div class="events-list">
+                @if (ViewBag.Events is IEnumerable<NonProfitSite.Models.Event> ev)
+                {
+                    foreach (var e in ev)
+                    {
+                        <div class="event-item">
+                            <strong>@e.Title</strong>
+                            <div class="text-muted">@e.Start?.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</div>
+                            <p>@e.Description</p>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No upcoming events.</p>
+                }
             </div>
         </div>
     </div>
-</div>
+</section>
+
+<section class="footer-cta" role="region" aria-label="Support our mission">
+    <div class="container">
+        <h3>Be part of the story</h3>
+        <p class="lead">Your time, voice, or donation helps create change. Learn how to get involved.</p>
+        <a class="btn btn-lg" href="/Home/Contact">Contact Us</a>
+    </div>
+</section>
